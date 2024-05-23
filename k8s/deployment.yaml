@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-hello-world
+  namespace: fastapi-hello-world
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fastapi-hello-world
+  template:
+    metadata:
+      labels:
+        app: fastapi-hello-world
+    spec:
+      containers:
+      - name: fastapi-hello-world
+        image: galib9940/fastapi-hello-world:latest   # Use the locally tagged image
+        ports:
+        - containerPort: 80
