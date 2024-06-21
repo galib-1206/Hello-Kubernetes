@@ -85,7 +85,7 @@ https://minikube.sigs.k8s.io/docs/
 #### Deployment of Fastapi-Application
 
 **Docker Container:** 
-<Fastapi-hello-world files >
+_Fastapi-hello-world files_
 **_Dockerfile  |  main.py  |  requirements.txt_**
 
  Build the docker image :
