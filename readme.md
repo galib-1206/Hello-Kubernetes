@@ -173,6 +173,15 @@ This command filters the pods in the kube-system. If not found , then create a o
 ```
 kubectl get all -n ingress-nginx
 ```
+
+**To check for all the endpoints and ingress :** 
+```
+Kubectl get ingress -A
+Kubectl get endpoints -A
+Check logs : controller is getting req or not .
+kubectl logs -f <nginx-ingress-controller pod id>   -n ingress-nginx
+```
+
 #### Nginx-Ingress-Controller
 **Still getting error while hitting  at the domain galib123.com** ??
 So the mechanism is basically , when i hit at domain , it forwards to ingress controller external ip ( which is basically virtual machine’s host only adapter ip :  192.168.56.101  & this is the ip should be  config in local host (/etc/hosts)
