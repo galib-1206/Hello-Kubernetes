@@ -11,7 +11,7 @@ If virtual support manager not enabled , then run these commands on local machin
 2. Now install  Minicube for Kubernetes Cluster. 
 
 ### Minikube.sh : 
-```
+```sh
 #!/bin/bash
 
 sudo apt-get update -y
@@ -53,7 +53,7 @@ Open terminal to this location and run :
 
 
 Start Cluster :
- ```json
+ ```sh
  minicube start
  ```
 ### Deploy a demo application 
@@ -61,20 +61,20 @@ Start Cluster :
 **Deploy application (service):**
 
 Create a sample deployment and expose it on port 8080:
-```json 
+```sh 
 kubectl create deployment hello-minikube --image=kicbase/echo-server:1.0
 kubectl expose deployment hello-minikube --type=NodePort --port=8080
 ```
 It may take a moment, but your deployment will soon show up when you run:
-```json
+```sh
 kubectl get services hello-minikube
 ```
  The easiest way to access this service is to let minikube launch a web browser for you:
-```json
+```sh
 minikube service hello-minikube
 ```
 Alternatively, use **kubectl** to forward the port:
-```json
+```sh
 kubectl port-forward service/hello-minikube 7080:8080
 ```
 Tada! Your application is now available at http://localhost:7080/.
@@ -83,12 +83,13 @@ Source :
 https://minikube.sigs.k8s.io/docs/
 
 #### Deployment of Fastapi-Application
+
 **Docker Container:** 
 <Fastapi-hello-world files >
 **_Dockerfile  |  main.py  |  requirements.txt_**
 
  Build the docker image :
-```json
+```sh
 docker build -t galib9940/fastapi-hello-world .
 ```
 Docker Image Name: galib9940/fastapi-hello-world
@@ -97,23 +98,23 @@ Repository Name: fastapi-hello-world
 Tag: latest (default)
 
 Check images : 
-```json
+```sh
 docker images
 ```
 Run the docker Container : 
-```json
+```sh
 docker run -d -p 8000:80 --name fastapi-container galib9940/fastapi-hello-world
 ```
 Run a container from your existing Docker image. This will map port 8000 on your host to port 80 in the container.
 Check the container : 
-```json
+```
 docker ps 
 docker logs fastapi-container
 ```
 Access the FastAPI application:  curl http://localhost:8000
 
 
-**Docker Compose** : 
+Docker Compose : 
 For multiple container application 
 Need a docker-compose.yaml file
 
@@ -135,15 +136,15 @@ Ingress exposes HTTP and HTTPS routes from outside the cluster to services withi
 ![alt text](https://earthly.dev/blog/assets/images/mutual-tls-kubernetes-nginx-ingress-controller/ptpr1xB.png )
 
 Enabling ingress 
-```json
+```
 Minikube addons enable ingress 
 ```
 Yaml file creating (services,pods,ingress) 
-```json
+```
 Kubectl apply -f <file.yaml>
 ```
 If namespace is created , then… ( isolate resources : deployment, services, ingress)
-```json
+```
 Kubectl get pods -n <namespace_name>
 Kubectl get service -n <namespace_name>
 Kubectl get ingress -n <namespace_name>
@@ -152,7 +153,7 @@ Kubectl get ingress -n <namespace_name>
 Ensuring domain name (galib123.com) points to the correct ip address of your ingress controller or minikube cluster 
 
 1. Verify ip:( ip will be same for minikube cluster and ingress controller )
-```json
+```
 minikube ip  
 Kubectl get ingress -n <namespace> o -wide
 ```
@@ -164,12 +165,12 @@ Make sure that , Minikube ip or ingress controller ip is reachable from your hos
 
 To check : ping ip_address ( sends ICMP echo req and wait for response)
 3. Check ingress controller(nginx) is running properly or not. 
-```json
+```
 kubectl get pods -n kube-system -l app.kubernetes.io/name=ingress-nginx
 ```
 This command filters the pods in the kube-system. If not found , then create a one . 
 4. To check all from ingress-nginx:
-```json
+```
 kubectl get all -n ingress-nginx
 ```
 #### Nginx-Ingress-Controller
@@ -177,7 +178,7 @@ kubectl get all -n ingress-nginx
 So the mechanism is basically , when i hit at domain , it forwards to ingress controller external ip ( which is basically virtual machine’s host only adapter ip :  192.168.56.101  & this is the ip should be  config in local host (/etc/hosts)
 
 Cli command : 
-```json
+```
 cat /etc/hosts
 127.0.0.1	localhost
 127.0.1.1	bs949
