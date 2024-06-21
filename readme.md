@@ -4,14 +4,14 @@
 1. Setup Virtual machine in Virtual Box
 If virtual support manager not enabled , then run these commands on local machine ( vm must be stopped then) : 
  
- ```json
+ ```sh
  Vboxmanage modifyvm “vm_name”  --nested-hw-virt=on
  ```
 
 2. Now install  Minicube for Kubernetes Cluster. 
 
 ### Minikube.sh : 
-```json
+```
 #!/bin/bash
 
 sudo apt-get update -y
@@ -118,8 +118,8 @@ For multiple container application
 Need a docker-compose.yaml file
 
 
-**Deployment Hierarchy:** 
-#### _Ingressing <- Service <- Deployments <- Replica Set <- Pods_
+#### Deployment Hierarchy: 
+##### _Ingressing <- Service <- Deployments <- Replica Set <- Pods_
 
 - Pods >> container , because multiple pods can be running at the same time.
 
@@ -129,7 +129,7 @@ If client hit on the service port , then service forwards to the appropriate por
 - memorizing ip address is difficult , so hitting the application with a domain name. 
 That’s why ingressing concept is needed!  
 
-**Ingressing**
+#### Ingressing
 Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster.
 
 ![alt text](https://earthly.dev/blog/assets/images/mutual-tls-kubernetes-nginx-ingress-controller/ptpr1xB.png )
@@ -148,7 +148,7 @@ Kubectl get pods -n <namespace_name>
 Kubectl get service -n <namespace_name>
 Kubectl get ingress -n <namespace_name>
 ```
-**Domain Resolution** 
+#### Domain Resolution
 Ensuring domain name (galib123.com) points to the correct ip address of your ingress controller or minikube cluster 
 
 1. Verify ip:( ip will be same for minikube cluster and ingress controller )
